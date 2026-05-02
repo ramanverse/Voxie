@@ -562,15 +562,7 @@ def render_architecture():
     st.markdown('\n    <div class="card">\n        <h3 style="margin-top: 0; margin-bottom: 16px; font-family: var(--syne); font-size: 2rem;">processing pipeline</h3>\n        <p style="font-weight: 500; line-height: 1.8; margin-bottom: 0;">\n            <b>1. Audio Upload</b><br>\n            Receives WAV/MP3 files and saves them to temporary storage.\n            <br><br>\n            <b>2. Resampling & Preprocessing</b><br>\n            Normalizes the audio sample rates using `librosa` to prepare the audio for AI analysis.\n            <br><br>\n            <b>3. AI Detection (Wav2Vec2)</b><br>\n            Processes the audio through a transformer network trained for deepfake detection. Outputs an authenticity probability.\n            <br><br>\n            <b>4. Watermark Verification (FFT)</b><br>\n            Analyzes the audio frequency spectrum using Fast Fourier Transform to detect hidden spectral watermarks.\n            <br><br>\n            <b>5. Risk Engine</b><br>\n            Combines AI and watermark results into a final 0-100% Risk Score to determine if the audio is a deepfake or authentic.\n            <br><br>\n            <b>6. Database Logging</b><br>\n            Saves the results into a local SQLite database for historical analytics.\n        </p>\n    </div>\n    ', unsafe_allow_html=True)
 inject_css()
 with st.sidebar:
-    st.markdown(f'''
-    <div style="text-align: center; margin-bottom: 20px;">
-        <div style="background: white; border: 3px solid black; border-radius: 12px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto;">
-            <span style="font-size: 30px;">🎤</span>
-        </div>
-        <h2 style="margin:0;">Voxie AI</h2>
-        <p style="margin:0; opacity:0.6; font-size:0.8rem;">Voice Authenticator</p>
-    </div>
-    ''', unsafe_allow_html=True)
+    st.markdown('<div style="margin-top: 30px;"></div>', unsafe_allow_html=True)
     
     nav_choice = st.radio('Navigation', options=['Dashboard', 'Verify Audio', 'Embed Watermark', 'History', 'Analytics', 'Architecture'], label_visibility='collapsed')
     
