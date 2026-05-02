@@ -215,10 +215,18 @@ def inject_css():
         color: #ffffff !important;
     }
 
-    /* Clean up the file uploader button */
+    /* Clean up the file uploader and audio player */
     div[data-testid="stFileUploader"] button {
         border: 2px solid #000 !important;
         box-shadow: 2px 2px 0px 0px #000 !important;
+    }
+    
+    audio {
+        width: 100%;
+        border-radius: 12px;
+        border: 2px solid #000;
+        margin-top: 10px;
+        filter: invert(0.1);
     }
 
     </style>
@@ -300,11 +308,10 @@ def render_verify():
             tmp_file.write(audio_bytes)
             tmp_filepath = tmp_file.name
             
-        st.markdown('<div class="card-blue" style="margin-top: -20px; border-top: none; border-radius: 0 0 24px 24px;">', unsafe_allow_html=True)
-        st.audio(audio_bytes, format=f"audio/{suffix.strip('.')}")
-        st.markdown('</div>', unsafe_allow_html=True)
-        
         st.markdown('<div class="card-blue" style="margin-top: 24px;">', unsafe_allow_html=True)
+        st.markdown('<h3 style="margin-top:0;">Audio Preview</h3>', unsafe_allow_html=True)
+        st.audio(audio_bytes, format=f"audio/{suffix.strip('.')}")
+        st.markdown('<div style="margin-top: 24px;"></div>', unsafe_allow_html=True)
         st.markdown('<h3 style="margin-top:0;">Analysis Controls</h3>', unsafe_allow_html=True)
         embed_wm = st.checkbox('Embed watermark before analysis', key='embed_chk')
         analyze_clicked = st.button('analyze audio', type='primary', use_container_width=True)
