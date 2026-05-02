@@ -193,7 +193,23 @@ def inject_css():
         border-radius: 12px !important;
     }
 
-    /* Upgrade Button */
+    /* Streamlit Widget Overrides */
+    [data-testid="stWidgetLabel"] p, .stRadio label, .stFileUploader label, .stSelectbox label {
+        color: #000000 !important;
+        font-family: var(--font-main) !important;
+        font-weight: 800 !important;
+        font-size: 1rem !important;
+    }
+    
+    [data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] span {
+        color: #000000 !important;
+    }
+
+    /* Radio button text fix */
+    div[data-testid="stRadio"] div[role="radiogroup"] label {
+        color: #000000 !important;
+    }
+
     .upgrade-btn {
         background-color: var(--accent-purple) !important;
         color: white !important;
