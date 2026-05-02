@@ -24,7 +24,7 @@ except Exception as e:
 def inject_css():
     st.markdown('''
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Lexend:wght@300;400;500;600;700;800&display=swap');
     
     :root {
         --bg: #f8f8f8;
@@ -39,8 +39,8 @@ def inject_css():
         --border: #000000;
         --border-width: 2.5px;
         --radius: 24px;
-        --font-main: 'Plus Jakarta Sans', sans-serif;
-        --font-title: 'Syne', sans-serif;
+        --font-main: 'Lexend', sans-serif;
+        --font-title: 'Space Grotesk', sans-serif;
     }
     
     .stApp {
