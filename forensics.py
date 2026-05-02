@@ -37,10 +37,12 @@ def analyze_biological_markers(audio_path: str) -> Dict[str, Any]:
     hnr_proxy = harmonic_energy / (noise_energy + 1e-6)
 
     # Scoring Logic:
-    # Natural human speech jitter_score is typically between 0.01 and 0.05.
-    # If jitter is extremely low (< 0.008), it's highly likely to be synthetic.
+    # Natural human speech jitter_score is typically between 0.01 and 0.08.
+    # If jitter is extremely low (< 0.01) or HNR is extremely high (> 12), it's suspicious.
     is_synthetic_hint = False
-    if jitter_score < 0.01 or hnr_proxy > 15.0:
+    
+    # AI voices are often too clean (High HNR) and too stable (Low Jitter)
+    if jitter_score < 0.012 or hnr_proxy > 12.0:
         is_synthetic_hint = True
         
     return {
