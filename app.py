@@ -27,17 +27,17 @@ def inject_css():
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap');
     
     :root {
-        --bg: #ffffff;
+        --bg: #f8f8f8;
         --sidebar-bg: #e6e1ff;
         --card-pink: #fbc3e0;
         --card-yellow: #e6e89a;
         --card-blue: #dee2ff;
         --card-green: #d9db81;
         --accent-purple: #85586f;
-        --btn-gold: #f3e391;
+        --btn-salmon: #ff9f9f;
         --text: #000000;
         --border: #000000;
-        --border-width: 3px;
+        --border-width: 2.5px;
         --radius: 24px;
         --font-main: 'Plus Jakarta Sans', sans-serif;
         --font-title: 'Syne', sans-serif;
@@ -45,6 +45,8 @@ def inject_css():
     
     .stApp {
         background-color: var(--bg);
+        background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
+        background-size: 20px 20px;
         color: var(--text);
         font-family: var(--font-main);
     }
@@ -84,18 +86,37 @@ def inject_css():
     
     /* The "Analyze" Style Button */
     button[kind="primary"] {
-        background-color: var(--btn-gold) !important;
-        color: var(--text) !important;
+        background-color: var(--btn-salmon) !important;
+        color: #000 !important;
         border: var(--border-width) solid var(--border) !important;
-        border-radius: 12px !important;
-        padding: 0.6rem 1.2rem !important;
-        font-weight: 700 !important;
-        box-shadow: 4px 4px 0px 0px var(--border) !important;
+        border-radius: 0px !important;
+        padding: 0.8rem 1.5rem !important;
+        font-weight: 800 !important;
+        text-transform: lowercase !important;
+        box-shadow: 6px 6px 0px 0px #000 !important;
+        width: 100% !important;
         transition: all 0.1s !important;
     }
     button[kind="primary"]:active {
-        transform: translate(2px, 2px) !important;
-        box-shadow: 2px 2px 0px 0px var(--border) !important;
+        transform: translate(6px, 6px) !important;
+        box-shadow: 0px 0px 0px 0px #000 !important;
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: var(--border-width) solid var(--border);
+        padding-bottom: 8px;
+        margin-bottom: 20px;
+        margin-top: 32px;
+    }
+    
+    .section-header span:first-child {
+        font-family: var(--font-title);
+        font-size: 1.8rem;
+        font-weight: 800;
+        text-transform: lowercase;
     }
     
     button[kind="secondary"] {
@@ -311,8 +332,10 @@ def render_verify():
         st.markdown('<div class="card-blue" style="margin-top: 24px;">', unsafe_allow_html=True)
         st.markdown('<h3 style="margin-top:0;">Audio Preview</h3>', unsafe_allow_html=True)
         st.audio(audio_bytes, format=f"audio/{suffix.strip('.')}")
-        st.markdown('<div style="margin-top: 24px;"></div>', unsafe_allow_html=True)
-        st.markdown('<h3 style="margin-top:0;">Analysis Controls</h3>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        st.markdown('<div class="section-header"><span>analysis controls</span> <span>↗</span></div>', unsafe_allow_html=True)
+        st.markdown('<div style="background: transparent; padding: 0px;">', unsafe_allow_html=True)
         embed_wm = st.checkbox('Embed watermark before analysis', key='embed_chk')
         analyze_clicked = st.button('analyze audio', type='primary', use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
