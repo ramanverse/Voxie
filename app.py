@@ -250,40 +250,94 @@ def inject_css():
         filter: invert(0.1);
     }
 
+    .stat-card {
+        background-color: #ffffff;
+        border: var(--border-width) solid var(--border);
+        padding: 30px;
+        text-align: center;
+        box-shadow: 6px 6px 0px 0px #000;
+        height: 100%;
+    }
+    .stat-card-pink {
+        background-color: var(--btn-salmon);
+    }
+    .stat-label {
+        font-family: var(--font-title);
+        text-transform: lowercase;
+        font-weight: 800;
+        font-size: 1.1rem;
+        border-bottom: 2px solid #000;
+        display: inline-block;
+        padding-bottom: 4px;
+        margin-bottom: 20px;
+    }
+    .stat-value {
+        font-family: var(--font-title);
+        font-size: 3.5rem;
+        font-weight: 900;
+        letter-spacing: -2px;
+    }
+    
+    .hero-dashboard {
+        background-color: var(--card-pink);
+        border: var(--border-width) solid var(--border);
+        padding: 60px 40px;
+        text-align: center;
+        box-shadow: 6px 6px 0px 0px #000;
+        margin-bottom: 32px;
+    }
+    .hero-dashboard h1 {
+        font-size: 5rem !important;
+        margin: 0 !important;
+        letter-spacing: -3px !important;
+        line-height: 1 !important;
+    }
+    .hero-dashboard p {
+        font-weight: 700;
+        margin-top: 20px;
+        text-transform: lowercase;
+    }
+
     </style>
     ''', unsafe_allow_html=True)
 
 def render_dashboard():
-    st.markdown('''
-    <div class="hero-container">
-        <div class="hero-title">Voxie AI Dashboard</div>
-        <div class="hero-subtitle">Dual-layer AI deepfake detection and spectral watermark verification.</div>
-    </div>
-    ''', unsafe_allow_html=True)
-    
     history = fetch_all_history()
     total_analyses = len(history)
     high_risk_count = sum((1 for r in history if r['risk_level'] == 'High'))
     avg_score = sum((r['risk_score'] for r in history)) / total_analyses if total_analyses > 0 else 0
     
-    col1, col2 = st.columns([1.5, 1])
+    st.markdown(f'''
+    <div class="hero-dashboard">
+        <h1>Voxie Dashboard</h1>
+        <p>dual-layer ai deepfake detection and spectral watermark verification.<br>
+        protecting audio authenticity reliably and effectively.</p>
+    </div>
+    ''', unsafe_allow_html=True)
     
-    with col1:
+    c1, c2, c3 = st.columns(3)
+    
+    with c1:
         st.markdown(f'''
-        <div class="card-blue">
-            <h3 style="margin-top:0;">System Health</h3>
-            <p>Total analyses performed: <b>{total_analyses}</b></p>
-            <p>Average risk detected: <b>{avg_score:.1f}%</b></p>
+        <div class="stat-card">
+            <div class="stat-label">total analyses</div>
+            <div class="stat-value">{total_analyses}</div>
         </div>
         ''', unsafe_allow_html=True)
         
-    with col2:
-        risk_color = "var(--card-green)" if high_risk_count == 0 else "var(--card-yellow)"
+    with c2:
         st.markdown(f'''
-        <div class="card-yellow" style="background-color: {risk_color};">
-            <div style="font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Security Status</div>
-            <div class="metric-value">{high_risk_count}</div>
-            <div style="font-weight:700;">High Risk Threats</div>
+        <div class="stat-card stat-card-pink">
+            <div class="stat-label">high risk count</div>
+            <div class="stat-value">{high_risk_count}</div>
+        </div>
+        ''', unsafe_allow_html=True)
+        
+    with c3:
+        st.markdown(f'''
+        <div class="stat-card">
+            <div class="stat-label">average risk score</div>
+            <div class="stat-value">{avg_score:.1f}%</div>
         </div>
         ''', unsafe_allow_html=True)
 
