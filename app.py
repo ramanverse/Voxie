@@ -193,33 +193,32 @@ def inject_css():
         border-radius: 12px !important;
     }
 
-    /* Global Text Visibility Fix */
-    .stApp, .stApp p, .stApp span, .stApp label, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp li {
+    /* Targeted Visibility Fixes (No longer global to avoid overlaps) */
+    .stRadio p, .stSelectbox p, .stFileUploader p, [data-testid="stWidgetLabel"] p {
         color: #000000 !important;
-        font-family: var(--font-main) !important;
-    }
-    
-    /* Sidebar Specific Fixes */
-    [data-testid="stSidebar"] * {
-        color: #000000 !important;
+        font-weight: 700 !important;
     }
 
-    /* Upgrade Button Exception (Must stay white) */
+    /* Hero and Card Text */
+    .hero-container *, .card-yellow *, .card-blue *, .card-green * {
+        color: #000000 !important;
+    }
+    
+    /* Sidebar Navigation Links */
+    [data-testid="stSidebarNav"] span {
+        color: #000000 !important;
+        font-weight: 600 !important;
+    }
+
+    /* Upgrade Button Exception */
     .upgrade-btn, .upgrade-btn * {
         color: #ffffff !important;
     }
 
-    .stButton>button p {
-        color: #000000 !important;
-    }
-
-    /* Radio button text fix */
-    div[data-testid="stRadio"] div[role="radiogroup"] label p {
-        color: #000000 !important;
-    }
-    
-    div[data-testid="stMarkdownContainer"] p, div[data-testid="stMarkdownContainer"] span {
-        color: #000000 !important;
+    /* Clean up the file uploader button */
+    div[data-testid="stFileUploader"] button {
+        border: 2px solid #000 !important;
+        box-shadow: 2px 2px 0px 0px #000 !important;
     }
 
     </style>
