@@ -193,34 +193,35 @@ def inject_css():
         border-radius: 12px !important;
     }
 
-    /* Streamlit Widget Overrides */
-    [data-testid="stWidgetLabel"] p, .stRadio label, .stFileUploader label, .stSelectbox label {
+    /* Global Text Visibility Fix */
+    .stApp, .stApp p, .stApp span, .stApp label, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp li {
         color: #000000 !important;
         font-family: var(--font-main) !important;
-        font-weight: 800 !important;
-        font-size: 1rem !important;
     }
     
-    [data-testid="stMarkdownContainer"] p, [data-testid="stMarkdownContainer"] span {
+    /* Sidebar Specific Fixes */
+    [data-testid="stSidebar"] * {
+        color: #000000 !important;
+    }
+
+    /* Upgrade Button Exception (Must stay white) */
+    .upgrade-btn, .upgrade-btn * {
+        color: #ffffff !important;
+    }
+
+    .stButton>button p {
         color: #000000 !important;
     }
 
     /* Radio button text fix */
-    div[data-testid="stRadio"] div[role="radiogroup"] label {
+    div[data-testid="stRadio"] div[role="radiogroup"] label p {
+        color: #000000 !important;
+    }
+    
+    div[data-testid="stMarkdownContainer"] p, div[data-testid="stMarkdownContainer"] span {
         color: #000000 !important;
     }
 
-    .upgrade-btn {
-        background-color: var(--accent-purple) !important;
-        color: white !important;
-        border: var(--border-width) solid var(--border) !important;
-        border-radius: 12px !important;
-        padding: 16px !important;
-        text-align: center;
-        font-weight: 700;
-        box-shadow: 4px 4px 0px 0px var(--border);
-        margin-top: 40px;
-    }
     </style>
     ''', unsafe_allow_html=True)
 
