@@ -4,6 +4,8 @@
 
 Built for high-stakes environments where audio integrity is paramount, Voxie provides a multi-layered security approach to expose even the most sophisticated "Synthetic Perfection" in modern deepfakes.
 
+[🚀 **Live Demo: voxieai.streamlit.app**](https://voxieai.streamlit.app/)
+
 ---
 
 ## 🛡️ Features
