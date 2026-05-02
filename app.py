@@ -24,7 +24,7 @@ except Exception as e:
 def inject_css():
     st.markdown('''
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Lexend:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
     
     :root {
         --bg: #f8f8f8;
@@ -37,18 +37,28 @@ def inject_css():
         --btn-salmon: #ff9f9f;
         --text: #000000;
         --border: #000000;
-        --border-width: 2.5px;
+        --border-width: 3px;
         --radius: 24px;
-        --font-main: 'Lexend', sans-serif;
-        --font-title: 'Space Grotesk', sans-serif;
+        --font-main: 'Bricolage Grotesque', sans-serif;
     }
     
     .stApp {
         background-color: var(--bg);
-        background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
-        background-size: 20px 20px;
+        background-image: radial-gradient(#d1d1d1 1.5px, transparent 1.5px);
+        background-size: 24px 24px;
         color: var(--text);
         font-family: var(--font-main);
+        font-weight: 700;
+    }
+
+    /* Interactive Hover Effects */
+    .stat-card, .card-blue, .card-yellow, .card-green, .hero-dashboard, .hero-container {
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+    }
+    
+    .stat-card:hover, .card-blue:hover, .card-yellow:hover, .hero-container:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 12px 12px 0px 0px #000 !important;
     }
     
     /* Sidebar Styling */
